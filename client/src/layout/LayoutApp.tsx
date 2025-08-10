@@ -4,7 +4,7 @@ import AvatarMenu from "../auth/AvatarMenu"
 import NavLinks from "./NavLinks"
 import BurgerLogic from "./BurgerLogic"
 import LogoApp from "./LogoApp"
-import { Link } from "react-router"
+import { Link } from "@tanstack/react-router"
 import { useThemeStore } from "../store/useThemeStore"
 
 const LayoutApp = () => {

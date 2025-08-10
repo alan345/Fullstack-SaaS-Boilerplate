@@ -1,5 +1,5 @@
 import useDebounced from "./useDebounced"
-import { useLocation, useNavigate } from "react-router"
+import { useLocation, useNavigate } from "@tanstack/react-router"
 import { XCircleIcon } from "@phosphor-icons/react"
 
 const Search = () => {
@@ -14,7 +14,7 @@ const Search = () => {
     setInputValue("")
     const searchParams = new URLSearchParams(location.search)
     searchParams.delete("search")
-    navigate(`${location.pathname}?${searchParams.toString()}`)
+    navigate({ to: `${location.pathname}?${searchParams.toString()}` })
   }
 
   return (
@@ -32,7 +32,7 @@ const Search = () => {
             const searchParams = new URLSearchParams(location.search)
             searchParams.set("search", e.target.value)
             searchParams.delete("page")
-            navigate(`${location.pathname}?${searchParams.toString()}`)
+            navigate({ to: `${location.pathname}?${searchParams.toString()}` })
           }}
         />
         {inputValue && (

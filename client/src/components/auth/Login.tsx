@@ -1,6 +1,6 @@
 import React from "react"
-import { Link } from "react-router"
-import { useNavigate } from "react-router"
+import { Link } from "@tanstack/react-router"
+import { useNavigate } from "@tanstack/react-router"
 import { SignInIcon } from "@phosphor-icons/react"
 import { useMutation } from "@tanstack/react-query"
 import { authClient } from "../../lib/auth-client"
@@ -31,7 +31,7 @@ const Login = () => {
       setError(result.error.message)
     }
     if (result.data) {
-      navigate("/profile")
+      navigate({ to: "/profile" })
       session.refetch()
     }
 

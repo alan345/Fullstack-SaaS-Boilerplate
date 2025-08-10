@@ -1,4 +1,4 @@
-import { NavLink } from "react-router"
+import { Link } from "@tanstack/react-router"
 import {
   HouseIcon,
   MonitorIcon,
@@ -24,108 +24,87 @@ const NavLinks = (props: Props) => {
   return (
     <div>
       <nav className="px-4 py-6">
-        <NavLink
+        <Link
           onClick={props.onClick}
           to="/"
-          className={({ isActive }) =>
-            `block py-2.5 px-4 rounded-sm transition ${
-              isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-900"
-            }`
-          }
+          className="block py-2.5 px-4 rounded-sm transition [&.active]:bg-gray-200 [&.active]:dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900"
+          activeProps={{ className: "active" }}
         >
           <div className="flex items-center">
             <HouseIcon className="mr-2" weight="fill" />
             Home
           </div>
-        </NavLink>
-        <NavLink
+        </Link>
+        <Link
           onClick={props.onClick}
           to="/beers"
-          className={({ isActive }) =>
-            `block py-2.5 px-4 rounded-sm transition ${
-              isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-900"
-            }`
-          }
+          className="block py-2.5 px-4 rounded-sm transition [&.active]:bg-gray-200 [&.active]:dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900"
+          activeProps={{ className: "active" }}
         >
           <div className="flex items-center">
             <WineIcon className="mr-2" weight="fill" />
             Beers
           </div>
-        </NavLink>
-        <NavLink
+        </Link>
+        <Link
           onClick={props.onClick}
           to="/chat"
-          className={({ isActive }) =>
-            `block py-2.5 px-4 rounded-sm transition ${
-              isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-900"
-            }`
-          }
+          className="block py-2.5 px-4 rounded-sm transition [&.active]:bg-gray-200 [&.active]:dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900"
+          activeProps={{ className: "active" }}
         >
           <div className="flex items-center">
             <ChatIcon className="mr-2" weight="fill" />
             Chat
           </div>
-        </NavLink>
+        </Link>
         {session.data?.user && (
-          <NavLink
+          <Link
             onClick={props.onClick}
             to="/users"
-            className={({ isActive }) =>
-              `block py-2.5 px-4 rounded-sm transition ${
-                isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-900"
-              }`
-            }
+            className="block py-2.5 px-4 rounded-sm transition [&.active]:bg-gray-200 [&.active]:dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900"
+            activeProps={{ className: "active" }}
           >
             <div className="flex items-center">
               <UsersIcon className="mr-2" weight="fill" />
               Users
             </div>
-          </NavLink>
+          </Link>
         )}
         {session.data?.user && (
-          <NavLink
+          <Link
             onClick={props.onClick}
             to="/sessions"
-            className={({ isActive }) =>
-              `block py-2.5 px-4 rounded-sm transition ${
-                isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-900"
-              }`
-            }
+            className="block py-2.5 px-4 rounded-sm transition [&.active]:bg-gray-200 [&.active]:dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900"
+            activeProps={{ className: "active" }}
           >
             <div className="flex items-center">
               <MonitorIcon className="mr-2" weight="fill" />
               Sessions
             </div>
-          </NavLink>
+          </Link>
         )}
-        <NavLink
+        <Link
           onClick={props.onClick}
           to="/contact"
-          className={({ isActive }) =>
-            `block py-2.5 px-4 rounded-sm transition ${
-              isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-900"
-            }`
-          }
+          className="block py-2.5 px-4 rounded-sm transition [&.active]:bg-gray-200 [&.active]:dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900"
+          activeProps={{ className: "active" }}
         >
           <div className="flex items-center">
             <PencilSimpleIcon className="mr-2" weight="fill" />
             Contact
           </div>
-        </NavLink>
-        <NavLink
-          onClick={props.onClick}
-          to="https://github.com/alan345/Fullstack-SaaS-Boilerplate"
-          className={({ isActive }) =>
-            `block py-2.5 px-4 rounded-sm transition ${
-              isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-900"
-            }`
-          }
+        </Link>
+        <a
+          href="https://github.com/alan345/Fullstack-SaaS-Boilerplate"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block py-2.5 px-4 rounded-sm transition hover:bg-gray-100 dark:hover:bg-gray-900"
         >
           <div className="flex items-center">
             <GithubLogoIcon className="mr-2" weight="fill" />
             Github
           </div>
-        </NavLink>
+        </a>
         <div className="mt-10">
           <button
             onClick={toggleDarkMode}

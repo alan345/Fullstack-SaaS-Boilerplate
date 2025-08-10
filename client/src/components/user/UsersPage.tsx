@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router"
+import { Link, useLocation } from "@tanstack/react-router"
 import { useQuery } from "@tanstack/react-query"
 import { useTRPC } from "../../lib/trpc"
 import ErrorTemplate from "../../template/ErrorTemplate"

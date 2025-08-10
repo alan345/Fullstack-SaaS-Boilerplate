@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router"
+import { useNavigate } from "@tanstack/react-router"
 import { SignOutIcon } from "@phosphor-icons/react"
 import { authClient } from "../../lib/auth-client"
 
@@ -7,7 +7,7 @@ const Logout = () => {
   const logout = async () => {
     try {
       await authClient.signOut()
-      navigate("/login")
+      navigate({ to: "/login" })
     } catch (error) {
       console.log(error)
     }

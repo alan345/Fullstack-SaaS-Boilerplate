@@ -1,12 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 // import { useState } from "react"
-import { BrowserRouter } from "react-router"
 import LayoutApp from "./layout/LayoutApp"
 import LogoApp from "./layout/LogoApp"
 import { createTRPCClient, httpBatchLink, httpSubscriptionLink, splitLink } from "@trpc/client"
-import { AppRouter } from "../../server/src/router"
+import { AppRouter as ServerAppRouter } from "../../server/src/router"
 import { TRPCProvider } from "./lib/trpc"
 import { useThemeStore } from "./store/useThemeStore"
+import AppRouter from "./AppRouter"
 
 function makeQueryClient() {
   return new QueryClient({
@@ -15,7 +15,6 @@ function makeQueryClient() {
         // With SSR, we usually want to set some default staleTime
         // above 0 to avoid refetching immediately on the client
         staleTime: 60 * 1000,
-
         refetchOnWindowFocus: false,
         retry: false,
         gcTime: 1000 * 60 * 60 * 24 * 7,
@@ -53,7 +52,7 @@ const App = () => {
     )
 
   const queryClient = getQueryClient()
-  const trpcClient = createTRPCClient<AppRouter>({
+  const trpcClient = createTRPCClient<ServerAppRouter>({
     links: [
       splitLink({
         // uses the httpSubscriptionLink for subscriptions
@@ -73,47 +72,17 @@ const App = () => {
       }),
     ],
   })
-
-  // const [queryClient] = useState(
-  //   () =>
-  //     new QueryClient({
-  //       defaultOptions: {
-  //         queries: {
-  //           refetchOnWindowFocus: false,
-  //           retry: false,
-  //           gcTime: 1000 * 60 * 60 * 24 * 7,
-  //         },
-  //       },
-  //     })
-  // )
-
-  // const [trpcClient] = useState(() =>
-  //   trpc.createClient({
-  //     links: [
-  //       httpBatchLink({
-  //         url,
-  //         fetch(url, options) {
-  //           return fetch(url, {
-  //             ...options,
-  //             credentials: "include",
-  //           })
-  //         },
-  //       }),
-  //     ],
-  //   })
-  // )
   return (
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
-          <div className={isDarkMode ? "dark" : "light"}>
-            <QueryClientProvider client={queryClient}>
-              <LayoutApp />
-            </QueryClientProvider>
-          </div>
-        </TRPCProvider>
-      </QueryClientProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
+        <div className={isDarkMode ? "dark" : "light"}>
+          <QueryClientProvider client={queryClient}>
+            <LayoutApp />
+            <AppRouter />
+          </QueryClientProvider>
+        </div>
+      </TRPCProvider>
+    </QueryClientProvider>
   )
 }
 

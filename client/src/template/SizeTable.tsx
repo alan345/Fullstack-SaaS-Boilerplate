@@ -1,12 +1,12 @@
 import React from "react"
-import { useSearchParams } from "react-router"
+import { useSearch } from "@tanstack/react-router"
 
 type Props = {
   initSize: number
 }
 export function SizeTable(props: Props) {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const sizeUrl = searchParams.get("size")
+  const search = useSearch({ from: "/beers" })
+  const sizeUrl = search.size
   const [sizeInput, setSizeInput] = React.useState(sizeUrl || props.initSize.toString())
 
   return (
@@ -17,7 +17,7 @@ export function SizeTable(props: Props) {
       value={sizeInput}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
-          setSearchParams({ size: sizeInput })
+          search.set({ size: sizeInput })
         }
       }}
       onChange={(e) => {
