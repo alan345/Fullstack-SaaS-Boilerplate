@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useLocation, useNavigate } from "react-router"
+import { useLocation, useNavigate } from "@tanstack/react-router"
 
 const useDebounced = (initialValue: string) => {
   const delay = 400
@@ -16,7 +16,7 @@ const useDebounced = (initialValue: string) => {
       } else {
         searchParams.delete("search")
       }
-      navigate(`${location.pathname}?${searchParams.toString()}`)
+      navigate({ to: location.pathname, search: searchParams })
     }, delay)
     return () => clearTimeout(handler)
   }, [inputValue, location.pathname, navigate, location.search, delay])

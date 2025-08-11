@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, useNavigate } from "react-router"
+import { Link, useNavigate } from "@tanstack/react-router"
 import { KeyIcon } from "@phosphor-icons/react"
 import { authClient } from "../../lib/auth-client"
 import { useTRPC } from "../../lib/trpc"
@@ -26,13 +26,13 @@ const Signup = () => {
     e.preventDefault()
     setIsSubmitting(true)
     const result = await tryCatch(
-      mutation.mutateAsync({ email: formData.email, password: formData.password, name: formData.name })
+      mutation.mutateAsync({ email: formData.email, password: formData.password, name: formData.name }),
     )
     if (result.error) {
       setError(result.error.message)
     }
     if (result.data) {
-      navigate("/profile")
+      navigate({ to: "/profile" })
       session.refetch()
     }
 

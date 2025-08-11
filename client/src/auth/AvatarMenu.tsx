@@ -1,4 +1,4 @@
-import { Link } from "react-router"
+import { Link } from "@tanstack/react-router"
 import ImgAvatar from "../layout/ImgAvatar"
 import AuthButtons from "./AuthButtons"
 import { authClient } from "../lib/auth-client"
