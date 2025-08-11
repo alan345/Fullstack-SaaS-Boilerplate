@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from "react"
-import AppRouter from "../AppRouter"
 import AvatarMenu from "../auth/AvatarMenu"
 import NavLinks from "./NavLinks"
 import BurgerLogic from "./BurgerLogic"
 import LogoApp from "./LogoApp"
-import { Link } from "react-router"
+import { Link, Outlet } from "@tanstack/react-router"
 import { useThemeStore } from "../store/useThemeStore"
 
 const LayoutApp = () => {
@@ -57,7 +56,7 @@ const LayoutApp = () => {
           </header>
 
           <main className="flex-1 overflow-y-auto">
-            <AppRouter />
+            <Outlet />
           </main>
         </div>
       </div>

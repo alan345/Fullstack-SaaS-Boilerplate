@@ -1,6 +1,6 @@
 import ProfileQuery from "./ProfileQuery"
 import Logout from "./Logout"
-import { Link } from "react-router"
+import { Link } from "@tanstack/react-router"
 import { MonitorIcon, UserCircleIcon } from "@phosphor-icons/react"
 import { authClient } from "../../lib/auth-client"
 

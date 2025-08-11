@@ -3,7 +3,7 @@ import { useTRPC } from "../../lib/trpc"
 import { LoadingTemplate } from "../../template/LoadingTemplate"
 import iconAvatar from "@fsb/client/src/assets/icons/avatar.svg"
 import ErrorTemplate from "../../template/ErrorTemplate"
-import { useLocation, useNavigate } from "react-router"
+import { useLocation, useNavigate } from "@tanstack/react-router"
 import { XCircleIcon } from "@phosphor-icons/react"
 import ImgAvatar from "../../layout/ImgAvatar"
 
@@ -29,7 +29,7 @@ const ChipUserId = (props: Props) => {
         className="text-xl cursor-pointer"
         onClick={() => {
           searchParams.delete("userId")
-          navigate(`${location.pathname}?${searchParams.toString()}`)
+          navigate({ to: location.pathname, search: searchParams })
         }}
       />
     </div>
