@@ -4,7 +4,8 @@ import { createTRPCClient, httpBatchLink, httpSubscriptionLink, splitLink } from
 import { AppRouter } from "../../server/src/router"
 import { TRPCProvider } from "./lib/trpc"
 import { useThemeStore } from "./store/useThemeStore"
-
+import { RouterProvider } from "@tanstack/react-router"
+import { router } from "./router"
 function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
@@ -105,6 +106,7 @@ const App = () => {
         <div className={isDarkMode ? "dark" : "light"}>
           <QueryClientProvider client={queryClient}>
             {/* TanStack Router will handle the routing */}
+            <RouterProvider router={router} />
           </QueryClientProvider>
         </div>
       </TRPCProvider>
