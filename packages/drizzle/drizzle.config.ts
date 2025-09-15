@@ -7,10 +7,11 @@ const databaseUrl = process.env.DATABASE_URL!
 if (!databaseUrl) {
   throw new Error("databaseUrl is not defined. Make sure server.env is loaded.")
 }
+const databaseUrlSll = databaseUrl + "?sslmode=require"
 
 export default defineConfig({
   out: "./drizzle",
   schema: "./src/db/schema.ts",
   dialect: "postgresql",
-  dbCredentials: { url: databaseUrl },
+  dbCredentials: { url: databaseUrlSll },
 })
