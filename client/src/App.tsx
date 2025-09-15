@@ -1,13 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-// import { useState } from "react"
-import { BrowserRouter } from "react-router"
-import LayoutApp from "./layout/LayoutApp"
 import LogoApp from "./layout/LogoApp"
 import { createTRPCClient, httpBatchLink, httpSubscriptionLink, splitLink } from "@trpc/client"
 import { AppRouter } from "../../server/src/router"
 import { TRPCProvider } from "./lib/trpc"
 import { useThemeStore } from "./store/useThemeStore"
-
+import { RouterProvider } from "@tanstack/react-router"
+import { router } from "./router"
 function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
@@ -103,17 +101,16 @@ const App = () => {
   //   })
   // )
   return (
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
-          <div className={isDarkMode ? "dark" : "light"}>
-            <QueryClientProvider client={queryClient}>
-              <LayoutApp />
-            </QueryClientProvider>
-          </div>
-        </TRPCProvider>
-      </QueryClientProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
+        <div className={isDarkMode ? "dark" : "light"}>
+          <QueryClientProvider client={queryClient}>
+            {/* TanStack Router will handle the routing */}
+            <RouterProvider router={router} />
+          </QueryClientProvider>
+        </div>
+      </TRPCProvider>
+    </QueryClientProvider>
   )
 }
 

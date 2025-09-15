@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router"
+import { Link, useLocation } from "@tanstack/react-router"
 import { CaretRightIcon, CaretLeftIcon } from "@phosphor-icons/react"
 
 type Props = {

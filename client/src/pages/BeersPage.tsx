@@ -3,12 +3,12 @@ import { LoadingTemplate } from "../template/LoadingTemplate"
 import { SizeTable } from "../template/SizeTable"
 import { useQuery } from "@tanstack/react-query"
 import { useTRPC } from "../lib/trpc"
-import { useSearchParams } from "react-router"
+import { useSearch } from "@tanstack/react-router"
 import { WineIcon } from "@phosphor-icons/react"
 
 const BeersPage = () => {
-  const [searchParams] = useSearchParams()
-  const sizeUrl = searchParams.get("size")
+  const search = useSearch({ from: "/beers" })
+  const sizeUrl = search.size
 
   const initSize = 6
   const finalSize = sizeUrl ? Number(sizeUrl) : initSize
