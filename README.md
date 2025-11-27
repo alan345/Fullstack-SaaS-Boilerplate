@@ -132,7 +132,7 @@ npm run test
 - Need a component library? Check out [Chakra UI](https://v2.chakra-ui.com/)
 - If your stack is getting more and more shared workspaces, consider using [pnpm](https://pnpm.io/workspaces) instead of npm
 
-## Who is using TER?
+## Who is using FSB?
 
 - [Nachonacho.com](https://Nachonacho.com) - The world's largest marketplace for Software & Services
 
