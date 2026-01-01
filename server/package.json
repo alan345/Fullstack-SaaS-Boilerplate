@@ -14,7 +14,7 @@
     "@fastify/cors": "^11.1.0",
     "@fsb/drizzle": "1.0.0",
     "@fsb/shared": "1.0.0",
-    "@trpc/server": "^11.5.1",
+    "@trpc/server": "^11.8.0",
     "axios": "^1.12.2",
     "better-auth": "^1.4.5",
     "fastify": "^5.6.1",
