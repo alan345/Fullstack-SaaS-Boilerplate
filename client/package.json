@@ -18,7 +18,7 @@
     "@trpc/client": "^11.7.1",
     "@trpc/server": "^11.7.1",
     "@trpc/tanstack-react-query": "^11.7.1",
-    "better-auth": "^1.4.2",
+    "better-auth": "^1.4.5",
     "dotenv": "^17.2.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
