@@ -1,22 +1,40 @@
-import { Link, useLocation } from "react-router"
+import { Link, useLocation, useNavigate } from "react-router"
 import { useQuery } from "@tanstack/react-query"
 import { useTRPC } from "../../lib/trpc"
 import ErrorTemplate from "../../template/ErrorTemplate"
 import Pagination from "../../layout/Pagination"
 import ImgAvatar from "../../layout/ImgAvatar"
 import Search from "../search/Search"
-import { UsersIcon, WarningCircleIcon, MonitorIcon } from "@phosphor-icons/react"
+import { UsersIcon, WarningCircleIcon, MonitorIcon, UserSwitchIcon } from "@phosphor-icons/react"
 import utils from "../../lib/utils"
 import ChipUserId from "./ChipUserId"
+import { authClient } from "../../lib/auth-client"
 
 const UsersPage = () => {
   const location = useLocation()
+  const navigate = useNavigate()
+  const session = authClient.useSession()
   const query = new URLSearchParams(location.search)
   const page = query.get("page")
   const search = query.get("search") || undefined
   const userId = query.get("userId") || undefined
   const trpc = useTRPC()
   const dataQuery = useQuery(trpc.user.getUsers.queryOptions({ page: utils.sanitizePage(page), search, userId }))
+  const currentUserId = session.data?.user?.id
+  const isAdmin = session.data?.user?.role === "admin"
+
+  const handleImpersonate = async (targetUserId: string) => {
+    const { data, error } = await authClient.admin.impersonateUser({ userId: targetUserId })
+    if (error) {
+      console.error("Impersonate failed:", error.message)
+      return
+    }
+    if (data) {
+      session.refetch()
+      navigate("/profile")
+    }
+  }
+
   if (dataQuery.isError) return <ErrorTemplate message={dataQuery.error.message} />
 
   return (
@@ -48,6 +66,7 @@ const UsersPage = () => {
                   <th>Email</th>
                   <th>Avatar</th>
                   <th>Sessions</th>
+                  {isAdmin && <th>Impersonate</th>}
                 </tr>
               </thead>
               <tbody>
@@ -67,6 +86,22 @@ const UsersPage = () => {
                         </button>
                       </Link>
                     </td>
+                    {isAdmin && (
+                      <td>
+                        {user.id !== currentUserId ? (
+                          <button
+                            type="button"
+                            className="btn-white"
+                            onClick={() => handleImpersonate(user.id)}
+                            title="Impersonate user"
+                          >
+                            <UserSwitchIcon className="text-2xl" />
+                          </button>
+                        ) : (
+                          <span className="text-gray-400 text-sm">—</span>
+                        )}
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>

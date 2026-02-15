@@ -1,9 +1,11 @@
 import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
+import { admin } from "better-auth/plugins"
 import { db } from "../context"
 import * as schema from "@fsb/drizzle"
 
 export const auth = betterAuth({
+  plugins: [admin()],
   user: {
     additionalFields: {
       role: {
