@@ -29,6 +29,7 @@ export const sessionTable = pgTable("session", {
   expiresAt: timestamp("expires_at").notNull(), // Expiry timestamp
   ipAddress: text("ip_address"), // Optional IP address
   userAgent: text("user_agent"), // Optional user agent
+  impersonatedBy: uuid("impersonated_by").references(() => userTable.id), // Admin user ID when this session is impersonation (better-auth admin plugin)
   createdAt: timestamp("created_at").defaultNow().notNull(), // Creation time
   updatedAt: timestamp("updated_at").defaultNow().notNull(), // Last update time
 })

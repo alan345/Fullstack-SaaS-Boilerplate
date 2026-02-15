@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "tsc",
+    "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "main": "dist/index.js",
@@ -12,5 +12,8 @@
   "description": "",
   "dependencies": {
     "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
   }
 }
