@@ -44,7 +44,7 @@
 | ------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | <a href="https://better-auth.com">Better Auth</a>                               | Authentication library for Node.js                               | <a href="https://github.com/better-auth/better-auth"><img src="https://img.shields.io/github/stars/better-auth/better-auth?style=flat-square" alt="GitHub Repo stars" /></a> |
 | <a href="https://phosphoricons.com">Phosphor Icons</a>                          | Beautifully simple & consistent icons                            | <a href="https://github.com/phosphor-icons/homepage"><img src="https://img.shields.io/github/stars/phosphor-icons/homepage?style=flat-square" alt="GitHub Repo stars" /></a> |
-| <a href="https://docs.npmjs.com/cli/v10/using-npm/workspaces">npm Workspace</a> | Workspaces for managing multiple packages in a single repository | <a href="https://github.com/npm/cli"><img src="https://img.shields.io/github/stars/npm/cli?style=flat-square" alt="GitHub Repo stars" /></a>                                 |
+| <a href="https://pnpm.io/workspaces">pnpm Workspaces</a>                        | Fast, disk space efficient package manager for monorepos          | <a href="https://github.com/pnpm/pnpm"><img src="https://img.shields.io/github/stars/pnpm/pnpm?style=flat-square" alt="GitHub Repo stars" /></a>                                 |
 | <a href="https://playwright.dev">Playwright</a>                                 | Test your web apps headlessly with a single API                  | <a href="https://github.com/microsoft/playwright"><img src="https://img.shields.io/github/stars/microsoft/playwright?style=flat-square" alt="GitHub Repo stars" /></a>       |
 | <a href="https://reactrouter.com">React Router v7</a>                           | Declarative routing for React                                    | <a href="https://github.com/remix-run/react-router"><img src="https://img.shields.io/github/stars/remix-run/react-router?style=flat-square" alt="GitHub Repo stars" /></a>   |
 | <a href="https://www.typescriptlang.org">TypeScript</a>                         | TypeScript is a typed superset of JavaScript                     | <a href="https://github.com/microsoft/TypeScript"><img src="https://img.shields.io/github/stars/microsoft/TypeScript?style=flat-square" alt="GitHub Repo stars" /></a>       |
@@ -65,6 +65,7 @@
 
 ## Installation
 
+- Install [pnpm](https://pnpm.io/installation) if you haven't already: `npm install -g pnpm`
 - Update the server `server.env` [file](https://github.com/alan345/Fullstack-SaaS-Boilerplate/blob/main/server.env) and the client `client.env` [file](https://github.com/alan345/Fullstack-SaaS-Boilerplate/blob/main/client/client.env) with your credentials
 - Make sure Postgres is running and create a new database called `fsb`
 
@@ -73,20 +74,20 @@ psql -U user // replace user by your postgres user
 CREATE DATABASE fsb;
 ```
 
-- Run in the terminal In the root directory:
+- Run in the terminal in the root directory:
 
 ```bash
-// Install the dependencies
-npm i
+# Install the dependencies
+pnpm install
 
-// Setup the database
-npm run push
+# Setup the database
+pnpm run push
 
-// Seed the database
-npm run seed
+# Seed the database
+pnpm run seed
 
-// Run the app (it will run the client and the server automatically)
-npm run dev
+# Run the app (it will run the client and the server automatically)
+pnpm run dev
 ```
 
 ## Building for production
@@ -94,8 +95,8 @@ npm run dev
 - Update the `.gitignore` [file](https://github.com/alan345/Fullstack-SaaS-Boilerplate/blob/main/.gitignore) by uncommenting `# .env` to ensure your credentials remain private and are not exposed.
 
 ```bash
-npm run build
-npm run start
+pnpm run build
+pnpm run start
 ```
 
 ## Printscreens
@@ -124,13 +125,13 @@ The tests should be executed while the application is running.
 #### Running the tests in the Terminal
 
 ```
-npm run test
+pnpm run test
 ```
 
 ## Other recommendations
 
 - Need a component library? Check out [Chakra UI](https://v2.chakra-ui.com/)
-- If your stack is getting more and more shared workspaces, consider using [pnpm](https://pnpm.io/workspaces) instead of npm
+- This project uses [pnpm](https://pnpm.io/workspaces) workspaces for fast, disk-efficient installs
 
 ## Who is using FSB?
 
