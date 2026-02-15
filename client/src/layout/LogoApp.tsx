@@ -1,4 +1,4 @@
-import logoApp from "@fsb/client/src/assets/images/logo-saas-transparent.png"
+import logoApp from "../assets/images/logo-saas-transparent.png"
 
 const LogoApp = () => {
   return (

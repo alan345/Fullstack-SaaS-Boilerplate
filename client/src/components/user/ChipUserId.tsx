@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { useTRPC } from "../../lib/trpc"
 import { LoadingTemplate } from "../../template/LoadingTemplate"
-import iconAvatar from "@fsb/client/src/assets/icons/avatar.svg"
+import iconAvatar from "../../assets/icons/avatar.svg"
 import ErrorTemplate from "../../template/ErrorTemplate"
 import { useLocation, useNavigate } from "react-router"
 import { XCircleIcon } from "@phosphor-icons/react"

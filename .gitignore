@@ -1,4 +1,5 @@
 node_modules
+.pnpm-store
 dist
 # .env # Uncomment this line
 # server.env # Uncomment this line
