@@ -16,9 +16,9 @@
     "@fsb/drizzle": "1.0.0",
     "@fsb/shared": "1.0.0",
     "@trpc/server": "^11.8.0",
-    "axios": "^1.12.2",
+    "axios": "^1.13.5",
     "better-auth": "^1.4.10",
-    "fastify": "^5.6.1",
+    "fastify": "^5.7.3",
     "zod": "^4.1.12"
   },
   "devDependencies": {
