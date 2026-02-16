@@ -106,6 +106,8 @@ pnpm run start
 
 ## Printscreens
 
+[impersonateUser.webm](https://github.com/user-attachments/assets/4b12f604-a31b-46a4-9930-0cebb17f2525)
+
 <img width="1556" alt="image" src="https://github.com/user-attachments/assets/1b3db78d-4b34-4401-b8e3-89dc85e990a9" />
 <img width="1556" alt="image" src="https://github.com/user-attachments/assets/5eedf90f-18a8-4687-b8fb-bd4cc5d0dbeb" />
 <img width="1556" alt="image" src="https://github.com/user-attachments/assets/eed287fe-7be7-4594-b97a-2ef51718c446" />
