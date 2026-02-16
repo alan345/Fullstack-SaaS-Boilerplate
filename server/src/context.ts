@@ -5,8 +5,12 @@ const { eq } = drizzleOrm
 const { drizzle } = drizzleOrm_NodePostgres
 import { userTable } from "@fsb/drizzle"
 import * as schema from "@fsb/drizzle"
+import path from "path"
+import { fileURLToPath } from "url"
 import dotenv from "dotenv"
-dotenv.config()
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+dotenv.config({ path: path.resolve(__dirname, "../../.env") })
 import { fromNodeHeaders } from "better-auth/node"
 import { auth } from "./lib/auth"
 

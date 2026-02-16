@@ -1,9 +1,12 @@
+import path from "path"
 import { defineConfig } from "drizzle-kit"
 import dotenv from "dotenv"
-console.log("dotenv.config()")
-dotenv.config({ path: "../../server.env" })
+
+dotenv.config()
+dotenv.config({ path: path.resolve(process.cwd(), "../../.env") })
+
 const databaseUrl = process.env.DATABASE_URL!
-if (!databaseUrl) throw new Error("databaseUrl is not defined. Make sure server.env is loaded.")
+if (!databaseUrl) throw new Error("DATABASE_URL is not defined. Make sure root .env is loaded.")
 
 export default defineConfig({
   out: "./drizzle",
