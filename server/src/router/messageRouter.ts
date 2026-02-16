@@ -18,7 +18,7 @@ type ChatMessage = {
 }
 
 export type StreamStartPayload = { kind: "streamStart"; streamId: string }
-export type StreamChunkPayload = { kind: "streamChunk"; streamId: string; chunk: string }
+export type StreamChunkPayload = { kind: "streamChunk"; streamId: string; index: number; chunk: string }
 export type StreamEndPayload = { kind: "streamEnd"; streamId: string; message: ChatMessage }
 export type SSEPayload = ChatMessage | StreamStartPayload | StreamChunkPayload | StreamEndPayload
 const messageRouter = router({
@@ -50,9 +50,10 @@ const messageRouter = router({
           ee.emit("fsb-chat", { kind: "streamStart", streamId } satisfies StreamStartPayload)
 
           let answer = ""
+          let index = 0
           for await (const chunk of streamOpenAI(question)) {
             answer += chunk
-            ee.emit("fsb-chat", { kind: "streamChunk", streamId, chunk } satisfies StreamChunkPayload)
+            ee.emit("fsb-chat", { kind: "streamChunk", streamId, index: index++, chunk } satisfies StreamChunkPayload)
           }
 
           await ctx.db.insert(messageTable).values({
