@@ -4,7 +4,7 @@ import fastifyCookie from "@fastify/cookie"
 import fastifyCors from "@fastify/cors"
 import { authHandler } from "./handlers/auth"
 import dotenv from "dotenv"
-dotenv.config({ path: "../server.env" })
+dotenv.config()
 import createContext from "./context"
 import { AppRouter, appRouter } from "./router"
 

@@ -42,6 +42,10 @@ const messageRouter = router({
         const question = trimmed.slice(AI_COMMAND_PREFIX.length).trim()
         if (question) {
           const answer = await getOpenAICompletion(question)
+          await ctx.db.insert(messageTable).values({
+            message: answer,
+            senderId: null,
+          })
           const aiMessage: ChatMessage = {
             id: "ai",
             name: "AI",
