@@ -1,6 +1,7 @@
 import React from "react"
 import ImgAvatar from "../../layout/ImgAvatar"
 import { ChatMessage } from "../../pages/ChatPage"
+import iconAvatar from "../../assets/images/logo-saas-transparent-square.png"
 
 interface MessageProps {
   message: ChatMessage
@@ -14,7 +15,11 @@ const Message: React.FC<MessageProps> = ({ message }) => {
 
   return (
     <div className="flex items-start gap-3">
-      <ImgAvatar src={message.sender?.image} alt={message.sender?.name || "User"} className="w-10 h-10" />
+      {message.sender?.image ? (
+        <ImgAvatar src={message.sender?.image} alt={message.sender?.name || "User"} className="w-10 h-10" />
+      ) : (
+        <img src={iconAvatar} alt="User" className="w-10 h-10" />
+      )}
       <div className="flex flex-col">
         <div className="text-sm text-gray-500">
           {message.sender?.name || "AI"} •{" "}

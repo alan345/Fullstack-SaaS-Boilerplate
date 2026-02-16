@@ -3,11 +3,16 @@ import { drizzle } from "drizzle-orm/node-postgres"
 import { eq } from "drizzle-orm"
 import { userTable, verificationTable, accountTable, sessionTable, messageTable } from "../db/schema"
 import * as schema from "../db/schema"
+import path from "path"
+import { fileURLToPath } from "url"
 import dotenv from "dotenv"
 
-dotenv.config({ path: "../../server.env" })
+// Seed is run with tsx (ESM); __dirname via import.meta is valid at runtime
+// @ts-expect-error - import.meta is valid when run with tsx
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+dotenv.config({ path: path.resolve(__dirname, "../../../../.env") })
 const databaseUrl = process.env.DATABASE_URL!
-if (!databaseUrl) throw new Error("databaseUrl is not defined. Make sure server.env is loaded.")
+if (!databaseUrl) throw new Error("databaseUrl is not defined. Make sure .env is loaded.")
 
 const db = drizzle(databaseUrl, { schema })
 
