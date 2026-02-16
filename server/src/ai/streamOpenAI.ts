@@ -18,13 +18,3 @@ export const streamOpenAI = async function* (question: string): AsyncGenerator<s
     }
   }
 }
-
-export const getOpenAICompletion = async (question: string): Promise<string> => {
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [{ role: "user", content: question }],
-    stream: false,
-  })
-  const content = completion.choices[0]?.message?.content
-  return typeof content === "string" ? content : ""
-}
