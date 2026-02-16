@@ -4,6 +4,7 @@ import AvatarMenu from "../auth/AvatarMenu"
 import NavLinks from "./NavLinks"
 import BurgerLogic from "./BurgerLogic"
 import LogoApp from "./LogoApp"
+import ImpersonationBanner from "./ImpersonationBanner"
 import { Link } from "react-router"
 import { useThemeStore } from "../store/useThemeStore"
 
@@ -42,6 +43,7 @@ const LayoutApp = () => {
         </div>
 
         <div className="flex-1 flex flex-col overflow-hidden ">
+          <ImpersonationBanner />
           <header className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 p-4">
             <div className="flex items-center">
               <button

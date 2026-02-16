@@ -32,7 +32,7 @@ const createContext = async ({ req, res }: CreateFastifyContextOptions) => {
       const user = await db.query.userTable.findFirst({ where: eq(userTable.id, data.user.id) })
       if (!user) throw new Error("User not found")
 
-      return { req, res, user, db, config }
+      return { req, res, user, db, config, session: data.session }
     } catch (error) {
       console.log("error", error)
     }

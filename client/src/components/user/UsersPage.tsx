@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { useTRPC } from "../../lib/trpc"
 import ErrorTemplate from "../../template/ErrorTemplate"
 import Pagination from "../../layout/Pagination"
@@ -19,6 +19,7 @@ const UsersPage = () => {
   const search = query.get("search") || undefined
   const userId = query.get("userId") || undefined
   const trpc = useTRPC()
+  const queryClient = useQueryClient()
   const dataQuery = useQuery(trpc.user.getUsers.queryOptions({ page: utils.sanitizePage(page), search, userId }))
   const currentUserId = session.data?.user?.id
   const isAdmin = session.data?.user?.role === "admin"
@@ -31,6 +32,7 @@ const UsersPage = () => {
     }
     if (data) {
       session.refetch()
+      await queryClient.refetchQueries({ queryKey: trpc.session.getSessionInfo.queryKey() })
       navigate("/profile")
     }
   }

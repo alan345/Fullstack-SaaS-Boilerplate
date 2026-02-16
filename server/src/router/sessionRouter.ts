@@ -6,6 +6,13 @@ import { drizzleOrm } from "@fsb/drizzle"
 const { count, eq } = drizzleOrm
 
 const sessionRouter = router({
+  getSessionInfo: protectedProcedure.query((opts) => {
+    const s = opts.ctx.session
+    const impersonatedBy =
+      s && typeof s === "object" && "impersonatedBy" in s && s.impersonatedBy != null ? String(s.impersonatedBy) : null
+    return { impersonatedBy }
+  }),
+
   deleteSession: adminProcedure
     .input(
       z.object({

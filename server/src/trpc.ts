@@ -13,7 +13,7 @@ export const protectedProcedure = t.procedure.use(async function isAuthed(opts) 
     throw new TRPCError({ code: "UNAUTHORIZED" })
   }
 
-  return opts.next({ ctx: { user: opts.ctx.user } })
+  return opts.next({ ctx: { ...opts.ctx, user: opts.ctx.user } })
 })
 export const adminProcedure = t.procedure.use(async function isAuthed(opts) {
   if (!opts.ctx.user) {
@@ -22,5 +22,5 @@ export const adminProcedure = t.procedure.use(async function isAuthed(opts) {
   if (opts.ctx.user.role !== "admin") {
     throw new TRPCError({ code: "FORBIDDEN", message: "You must be an admin" })
   }
-  return opts.next({ ctx: { user: opts.ctx.user } })
+  return opts.next({ ctx: { ...opts.ctx, user: opts.ctx.user } })
 })
