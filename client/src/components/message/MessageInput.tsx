@@ -41,7 +41,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ isConnected, onSendMessage 
         value={input}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        placeholder="Type a message..."
+        placeholder="Type a message or /ai to ask AI a question..."
         disabled={!isConnected}
         className="flex-1"
       />
