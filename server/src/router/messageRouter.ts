@@ -47,12 +47,13 @@ const messageRouter = router({
         const question = trimmed.slice(AI_COMMAND_PREFIX.length).trim()
         if (question) {
           const streamId = `stream-${Date.now()}`
-          ee.emit("fsb-chat", { kind: "streamStart", streamId } satisfies StreamStartPayload)
+          ee.emit("fsb-chat", { kind: "streamStart", streamId })
 
           let answer = ""
           for await (const chunk of streamOpenAI(question)) {
             answer += chunk
-            ee.emit("fsb-chat", { kind: "streamChunk", streamId, chunk } satisfies StreamChunkPayload)
+            ee.emit("fsb-chat", { kind: "streamChunk", streamId, chunk })
+            await new Promise((r) => setImmediate(r))
           }
 
           await ctx.db.insert(messageTable).values({
