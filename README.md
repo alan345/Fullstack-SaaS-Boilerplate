@@ -27,7 +27,10 @@
 
 ## Preview
 
-[fsb-chat.webm](https://github.com/user-attachments/assets/66aee4d1-d229-441d-a669-010c7030f481)
+
+[fsb-chat.webm](https://github.com/user-attachments/assets/3238e01d-4463-4d46-b99f-29b14015dd3f)
+
+
 
 ## Main Stack
 
