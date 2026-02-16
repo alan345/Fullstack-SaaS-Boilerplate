@@ -106,9 +106,9 @@ pnpm run start
 
 ## Printscreens
 
-[impersonateUser.webm](https://github.com/user-attachments/assets/4b12f604-a31b-46a4-9930-0cebb17f2525)
+[Impersonate User](https://github.com/user-attachments/assets/4b12f604-a31b-46a4-9930-0cebb17f2525)
 
-[fsb-auth.webm](https://github.com/user-attachments/assets/73d90df0-cb43-4cf2-a4cf-6584a9e6a0a4)
+[Login - Signup](https://github.com/user-attachments/assets/73d90df0-cb43-4cf2-a4cf-6584a9e6a0a4)
 
 
 <img width="1556" alt="image" src="https://github.com/user-attachments/assets/1b3db78d-4b34-4401-b8e3-89dc85e990a9" />
