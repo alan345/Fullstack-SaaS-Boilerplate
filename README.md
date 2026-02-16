@@ -1,4 +1,3 @@
-[fsb-chat.webm](https://github.com/user-attachments/assets/66aee4d1-d229-441d-a669-010c7030f481)
 
 
 <div align="center">
@@ -28,7 +27,7 @@
 
 ## Preview
 
-![Fullstack-SaaS-Boilerplate-Demo](https://github.com/user-attachments/assets/4693db07-523a-4326-9bc4-a1b1ea634507)
+[fsb-chat.webm](https://github.com/user-attachments/assets/66aee4d1-d229-441d-a669-010c7030f481)
 
 ## Main Stack
 
