@@ -1,10 +1,13 @@
 import { protectedProcedure, publicProcedure, router } from "../trpc"
 import { z } from "zod"
 import { messageTable, drizzleOrm } from "@fsb/drizzle"
-// import { broadcastMessage } from "../handlers/sse"
 import { EventEmitter } from "events"
+import { getOpenAICompletion } from "../ai/streamOpenAI"
+
 const ee = new EventEmitter()
 const { desc, lt } = drizzleOrm
+
+const AI_COMMAND_PREFIX = "/ai "
 
 type ChatMessage = {
   id: string
@@ -18,21 +21,37 @@ const messageRouter = router({
     .input(
       z.object({
         message: z.string().min(1),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       await ctx.db.insert(messageTable).values({
         message: input.message,
         senderId: ctx.user.id,
       })
-      const message: ChatMessage = {
+      const userMessage: ChatMessage = {
         id: ctx.user.id,
         name: ctx.user.name,
         image: ctx.user.image || "",
         message: input.message,
         createdAt: new Date(),
       }
-      ee.emit("fsb-chat", message)
+      ee.emit("fsb-chat", userMessage)
+
+      const trimmed = input.message.trim()
+      if (trimmed.toLowerCase().startsWith(AI_COMMAND_PREFIX)) {
+        const question = trimmed.slice(AI_COMMAND_PREFIX.length).trim()
+        if (question) {
+          const answer = await getOpenAICompletion(question)
+          const aiMessage: ChatMessage = {
+            id: "ai",
+            name: "AI",
+            image: "",
+            message: answer,
+            createdAt: new Date(),
+          }
+          ee.emit("fsb-chat", aiMessage)
+        }
+      }
 
       return { success: true }
     }),
@@ -40,7 +59,7 @@ const messageRouter = router({
     .input(
       z.object({
         before: z.string().datetime().optional(),
-      })
+      }),
     )
     .query(async ({ ctx, input }) => {
       const messages = await ctx.db.query.messageTable.findMany({
