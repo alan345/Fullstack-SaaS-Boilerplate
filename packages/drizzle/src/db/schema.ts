@@ -13,11 +13,12 @@ export const userTable = pgTable(
     image: text("image"),
     email: text("email").notNull().unique(),
     emailVerified: boolean("email_verified").default(false).notNull(),
+    banned: boolean("banned").default(false).notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
     role: rolesEnum().default("user"),
   },
-  (table) => [t.uniqueIndex("email_idx").on(table.email)]
+  (table) => [t.uniqueIndex("email_idx").on(table.email)],
 )
 
 export const sessionTable = pgTable("session", {
