@@ -1,5 +1,5 @@
 import Chat from "../components/message/Chat"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { useTRPC } from "../lib/trpc"
 import { RouterOutput } from "../lib/trpc"
@@ -9,9 +9,11 @@ const ChatPage = () => {
   const trpc = useTRPC()
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const dataQuery = useQuery(trpc.message.getMessages.queryOptions({}))
+  const initialLoadDone = useRef(false)
 
   useEffect(() => {
-    if (dataQuery.data) {
+    if (dataQuery.data && !initialLoadDone.current) {
+      initialLoadDone.current = true
       setMessages(dataQuery.data)
     }
   }, [dataQuery.data])

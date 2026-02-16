@@ -2,7 +2,7 @@ import { protectedProcedure, publicProcedure, router } from "../trpc"
 import { z } from "zod"
 import { messageTable, drizzleOrm } from "@fsb/drizzle"
 import { EventEmitter } from "events"
-import { getOpenAICompletion } from "../ai/streamOpenAI"
+import { streamOpenAI } from "../ai/streamOpenAI"
 
 const ee = new EventEmitter()
 const { desc, lt } = drizzleOrm
@@ -16,6 +16,11 @@ type ChatMessage = {
   message: string
   createdAt: Date
 }
+
+export type StreamStartPayload = { kind: "streamStart"; streamId: string }
+export type StreamChunkPayload = { kind: "streamChunk"; streamId: string; chunk: string }
+export type StreamEndPayload = { kind: "streamEnd"; streamId: string; message: ChatMessage }
+export type SSEPayload = ChatMessage | StreamStartPayload | StreamChunkPayload | StreamEndPayload
 const messageRouter = router({
   sendMessage: protectedProcedure
     .input(
@@ -41,7 +46,15 @@ const messageRouter = router({
       if (trimmed.toLowerCase().startsWith(AI_COMMAND_PREFIX)) {
         const question = trimmed.slice(AI_COMMAND_PREFIX.length).trim()
         if (question) {
-          const answer = await getOpenAICompletion(question)
+          const streamId = `stream-${Date.now()}`
+          ee.emit("fsb-chat", { kind: "streamStart", streamId } satisfies StreamStartPayload)
+
+          let answer = ""
+          for await (const chunk of streamOpenAI(question)) {
+            answer += chunk
+            ee.emit("fsb-chat", { kind: "streamChunk", streamId, chunk } satisfies StreamChunkPayload)
+          }
+
           await ctx.db.insert(messageTable).values({
             message: answer,
             senderId: null,
@@ -53,7 +66,7 @@ const messageRouter = router({
             message: answer,
             createdAt: new Date(),
           }
-          ee.emit("fsb-chat", aiMessage)
+          ee.emit("fsb-chat", { kind: "streamEnd", streamId, message: aiMessage } satisfies StreamEndPayload)
         }
       }
 
@@ -85,11 +98,11 @@ const messageRouter = router({
 
   sseMessages: publicProcedure.subscription(async function* () {
     while (true) {
-      const message = await new Promise<ChatMessage>((resolve) => {
+      const payload = await new Promise<SSEPayload>((resolve) => {
         ee.once("fsb-chat", resolve)
       })
 
-      yield message
+      yield payload
     }
   }),
 })

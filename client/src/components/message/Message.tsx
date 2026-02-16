@@ -30,7 +30,7 @@ const Message: React.FC<MessageProps> = ({ message }) => {
               {chip}
             </span>
           )}
-          {rest && <span>{rest}</span>}
+          {rest && <span className="whitespace-pre-wrap">{rest}</span>}
         </div>
       </div>
     </div>

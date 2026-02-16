@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from "react"
+import React, { useRef } from "react"
 import { ChatMessage } from "../../pages/ChatPage"
 import MessageInput from "./MessageInput"
 import SSEConnection from "./SSEConnection"
@@ -26,19 +26,12 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
     }
   }
 
-  const handleNewMessage = useCallback(
-    (message: ChatMessage) => {
-      setMessages((prev) => [message, ...prev])
-    },
-    [setMessages]
-  )
-
   return (
     <div className="p-6">
       <div className="flex items-center gap-2">
         <ChatIcon className="text-3xl mr-3" />
         <h1 className="text-2xl font-bold mr-1">Chat</h1>
-        <SSEConnection onMessage={handleNewMessage} />
+        <SSEConnection setMessages={setMessages} />
       </div>
 
       <div
