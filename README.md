@@ -66,7 +66,7 @@
 ## Installation
 
 - Install [pnpm](https://pnpm.io/installation) if you haven't already: `npm install -g pnpm`
-- Update the server `server.env` [file](https://github.com/alan345/Fullstack-SaaS-Boilerplate/blob/main/server.env) and the client `client.env` [file](https://github.com/alan345/Fullstack-SaaS-Boilerplate/blob/main/client/client.env) with your credentials
+- Rename `example.env` to `.env` with your own credentials (for both client and server)
 - Make sure Postgres is running and create a new database called `fsb`
 
 ```bash
