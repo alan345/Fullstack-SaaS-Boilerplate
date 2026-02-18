@@ -4,7 +4,7 @@
   <img src="https://github.com/user-attachments/assets/f9729f43-485a-44d4-b85d-f93dc5c09988" alt="image" height="180"/>
 </div>
 
-<h1 align="center"><strong>Fullstack SaaS Boilerplate</strong></h1>
+<h1 align="center"><strong>Fullstack SaaS Boilerplate with AI</strong></h1>
 <h3 align="center">Built with <a href="https://fastify.io">Fastify</a>, <a href="https://trpc.io">tRPC</a>, and <a href="https://reactjs.org">React</a>.</h3>
 
 ## Project
