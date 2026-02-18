@@ -97,8 +97,6 @@ pnpm run dev
 
 ## Building for production
 
-- Update the `.gitignore` [file](https://github.com/alan345/Fullstack-SaaS-Boilerplate/blob/main/.gitignore) by uncommenting `# .env` to ensure your credentials remain private and are not exposed.
-
 ```bash
 pnpm run build
 pnpm run start
