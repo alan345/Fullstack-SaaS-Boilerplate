@@ -1,12 +1,12 @@
-import { fastifyTRPCPlugin, FastifyTRPCPluginOptions } from "@trpc/server/adapters/fastify"
-import Fastify, { FastifyRequest, FastifyReply } from "fastify"
+import { fastifyTRPCPlugin, type FastifyTRPCPluginOptions } from "@trpc/server/adapters/fastify"
+import Fastify, { type FastifyRequest, type FastifyReply } from "fastify"
 import fastifyCookie from "@fastify/cookie"
 import fastifyCors from "@fastify/cors"
 import { authHandler } from "./handlers/auth"
 import dotenv from "dotenv"
 dotenv.config()
 import createContext from "./context"
-import { AppRouter, appRouter } from "./router"
+import { type AppRouter, appRouter } from "./router"
 
 // export const mergeRouters = t.mergeRouters
 

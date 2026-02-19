@@ -1,4 +1,4 @@
-import { FastifyRequest, FastifyReply } from "fastify"
+import type { FastifyRequest, FastifyReply } from "fastify"
 import { auth } from "../lib/auth"
 
 export async function authHandler(request: FastifyRequest, reply: FastifyReply) {
