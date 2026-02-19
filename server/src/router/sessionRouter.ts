@@ -1,4 +1,4 @@
-import { adminProcedure, protectedProcedure, router } from "../trpc"
+import { adminProcedure, protectedProcedure, router } from "../trpc.js"
 import { z } from "zod"
 import { sessionTable } from "@fsb/drizzle"
 import { drizzleOrm } from "@fsb/drizzle"

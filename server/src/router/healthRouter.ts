@@ -1,4 +1,4 @@
-import { publicProcedure, router } from "../trpc"
+import { publicProcedure, router } from "../trpc.js"
 
 const healthRouter = router({
   trpc: publicProcedure.query(() => {

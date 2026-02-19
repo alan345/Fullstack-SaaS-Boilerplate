@@ -1,6 +1,6 @@
-import { publicProcedure, router } from "../trpc"
+import { publicProcedure, router } from "../trpc.js"
 import { z } from "zod"
-import { fanapis } from "../api/fanapis"
+import { fanapis } from "../api/fanapis.js"
 
 export const gameRouter = router({
   getGames: publicProcedure

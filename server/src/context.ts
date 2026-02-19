@@ -11,7 +11,7 @@ import dotenv from "dotenv"
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 dotenv.config({ path: path.resolve(__dirname, "../../.env") })
 import { fromNodeHeaders } from "better-auth/node"
-import { auth } from "./lib/auth"
+import { auth } from "./lib/auth.js"
 
 const databaseUrl = process.env.DATABASE_URL!
 if (!databaseUrl) throw new Error("databaseUrl is not defined. Make sure server.env is loaded.")

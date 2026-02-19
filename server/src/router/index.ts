@@ -1,9 +1,9 @@
-import userRouter from "./userRouter"
-import sessionRouter from "./sessionRouter"
-import healthRouter from "./healthRouter"
-import gameRouter from "./gameRouter"
-import messageRouter from "./messageRouter"
-import { router } from "../trpc"
+import userRouter from "./userRouter.js"
+import sessionRouter from "./sessionRouter.js"
+import healthRouter from "./healthRouter.js"
+import gameRouter from "./gameRouter.js"
+import messageRouter from "./messageRouter.js"
+import { router } from "../trpc.js"
 
 export const appRouter = router({
   session: sessionRouter,

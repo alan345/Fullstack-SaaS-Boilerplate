@@ -1,4 +1,4 @@
-import { protectedProcedure, router } from "../trpc"
+import { protectedProcedure, router } from "../trpc.js"
 import { z } from "zod"
 import { userTable, drizzleOrm } from "@fsb/drizzle"
 const { eq, or, count, asc, ilike, and } = drizzleOrm

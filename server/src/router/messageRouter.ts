@@ -1,8 +1,8 @@
-import { protectedProcedure, publicProcedure, router } from "../trpc"
+import { protectedProcedure, publicProcedure, router } from "../trpc.js"
 import { z } from "zod"
 import { messageTable, drizzleOrm } from "@fsb/drizzle"
 import { EventEmitter } from "events"
-import { streamOpenAI } from "../ai/streamOpenAI"
+import { streamOpenAI } from "../ai/streamOpenAI.js"
 
 const ee = new EventEmitter()
 const { desc, lt } = drizzleOrm

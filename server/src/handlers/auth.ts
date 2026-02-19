@@ -1,5 +1,5 @@
 import type { FastifyRequest, FastifyReply } from "fastify"
-import { auth } from "../lib/auth"
+import { auth } from "../lib/auth.js"
 
 export async function authHandler(request: FastifyRequest, reply: FastifyReply) {
   try {

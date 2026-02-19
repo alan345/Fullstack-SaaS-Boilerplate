@@ -2,17 +2,16 @@ import { fastifyTRPCPlugin, type FastifyTRPCPluginOptions } from "@trpc/server/a
 import Fastify, { type FastifyRequest, type FastifyReply } from "fastify"
 import fastifyCookie from "@fastify/cookie"
 import fastifyCors from "@fastify/cors"
-import { authHandler } from "./handlers/auth"
+import { authHandler } from "./handlers/auth.js"
 import dotenv from "dotenv"
 dotenv.config()
-import createContext from "./context"
-import { type AppRouter, appRouter } from "./router"
+import createContext from "./context.js"
+import { type AppRouter, appRouter } from "./router/index.js"
 
 // export const mergeRouters = t.mergeRouters
 
 const fastify = Fastify({
-  maxParamLength: 5000,
-  // logger: true,
+  routerOptions: { maxParamLength: 5000 },
 })
 
 const start = async () => {
@@ -53,7 +52,7 @@ const start = async () => {
     })
     console.log("Server is running on port " + port)
   } catch (err) {
-    fastify.log.error(err)
+    console.error(err)
     process.exit(1)
   }
 }
