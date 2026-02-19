@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Game } from "../type/Game.type"
+import type { Game } from "../type/Game.type"
 
 const uri = "https://zelda.fanapis.com/api"
 

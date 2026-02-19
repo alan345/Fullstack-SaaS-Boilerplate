@@ -4,7 +4,7 @@ import SavedIconEffect from "./SavedIconEffect"
 import ErrorMutation from "../../layout/ErrorMutation"
 import { useMutation } from "@tanstack/react-query"
 import { useTRPC } from "../../lib/trpc"
-import { RouterOutput } from "../../lib/trpc"
+import type { RouterOutput } from "../../lib/trpc"
 
 type Props = {
   user: RouterOutput["user"]["getUserProfile"]

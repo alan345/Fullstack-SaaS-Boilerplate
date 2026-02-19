@@ -1,5 +1,5 @@
 import React from "react"
-import { ChatMessage } from "../../pages/ChatPage"
+import type { ChatMessage } from "../../pages/ChatPage"
 import Message from "./Message"
 
 interface MessageGroupProps {
@@ -26,17 +26,20 @@ const formatDate = (dateString: string) => {
 }
 
 const groupMessagesByDay = (messages: ChatMessage[]) => {
-  const grouped = messages.reduce((acc, message) => {
-    const date = new Date(message.createdAt).toLocaleDateString("en-US")
+  const grouped = messages.reduce(
+    (acc, message) => {
+      const date = new Date(message.createdAt).toLocaleDateString("en-US")
 
-    const existingGroup = acc.find((group) => group[0] === date)
-    if (existingGroup) {
-      existingGroup[1].push(message)
-    } else {
-      acc.push([date, [message]])
-    }
-    return acc
-  }, [] as [string, ChatMessage[]][])
+      const existingGroup = acc.find((group) => group[0] === date)
+      if (existingGroup) {
+        existingGroup[1].push(message)
+      } else {
+        acc.push([date, [message]])
+      }
+      return acc
+    },
+    [] as [string, ChatMessage[]][],
+  )
   return grouped
 }
 

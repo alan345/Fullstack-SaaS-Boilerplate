@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { ChatMessage } from "../../pages/ChatPage"
+import type { ChatMessage } from "../../pages/ChatPage"
 import { useQuery } from "@tanstack/react-query"
 import { useTRPC } from "../../lib/trpc"
 

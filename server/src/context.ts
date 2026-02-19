@@ -1,10 +1,9 @@
-import { CreateFastifyContextOptions } from "@trpc/server/adapters/fastify"
+import type { CreateFastifyContextOptions } from "@trpc/server/adapters/fastify"
 import { drizzleOrm_NodePostgres } from "@fsb/drizzle"
 import { drizzleOrm } from "@fsb/drizzle"
 const { eq } = drizzleOrm
 const { drizzle } = drizzleOrm_NodePostgres
-import { userTable } from "@fsb/drizzle"
-import * as schema from "@fsb/drizzle"
+import { userTable, schema } from "@fsb/drizzle"
 import path from "path"
 import { fileURLToPath } from "url"
 import dotenv from "dotenv"

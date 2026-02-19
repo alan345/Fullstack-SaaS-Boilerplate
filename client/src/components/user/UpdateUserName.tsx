@@ -4,7 +4,7 @@ import { useTRPC } from "../../lib/trpc"
 import { PencilSimpleIcon, CheckCircleIcon, SpinnerIcon } from "@phosphor-icons/react"
 import SavedIconEffect from "./SavedIconEffect"
 import ErrorMutation from "../../layout/ErrorMutation"
-import { RouterOutput } from "../../lib/trpc"
+import type { RouterOutput } from "../../lib/trpc"
 
 type Props = {
   user: RouterOutput["user"]["getUserProfile"]

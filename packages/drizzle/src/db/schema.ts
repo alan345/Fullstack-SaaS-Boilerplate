@@ -95,3 +95,14 @@ export const messageToUserRelations = relations(messageTable, ({ one }) => ({
     references: [userTable.id],
   }),
 }))
+
+export const schema = {
+  userTable,
+  sessionTable,
+  sessionToUserRelations,
+  accountTable,
+  verificationTable,
+  exampleTable,
+  messageTable,
+  messageToUserRelations,
+}

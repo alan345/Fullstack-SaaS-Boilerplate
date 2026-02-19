@@ -1,2 +1,2 @@
-export * from "./src/db/schema"
-export * from "./src/packageDrizzle"
+export * from "./src/db/schema.js"
+export * from "./src/packageDrizzle.js"

@@ -2,6 +2,7 @@
   "name": "@fsb/drizzle",
   "version": "1.0.0",
   "author": "Alan Szternberg",
+  "type": "module",
   "license": "ISC",
   "scripts": {
     "build": "npx tsc",

@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "lib": ["es2023"],
-    "module": "node16",
-    "target": "es2022",
+    "lib": ["es2024"],
+    "module": "esnext",
+    "target": "es2023",
+    "moduleResolution": "bundler", // no .js extensions needed
 
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node16",
+    "verbatimModuleSyntax": true,
     "outDir": "dist"
   }
 }

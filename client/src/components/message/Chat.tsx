@@ -1,5 +1,5 @@
 import React, { useRef } from "react"
-import { ChatMessage } from "../../pages/ChatPage"
+import type { ChatMessage } from "../../pages/ChatPage"
 import MessageInput from "./MessageInput"
 import SSEConnection from "./SSEConnection"
 import { authClient } from "../../lib/auth-client"

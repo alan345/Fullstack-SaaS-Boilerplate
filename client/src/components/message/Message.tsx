@@ -1,6 +1,6 @@
 import React from "react"
 import ImgAvatar from "../../layout/ImgAvatar"
-import { ChatMessage } from "../../pages/ChatPage"
+import type { ChatMessage } from "../../pages/ChatPage"
 import iconAvatar from "../../assets/images/logo-saas-transparent-square.png"
 
 interface MessageProps {

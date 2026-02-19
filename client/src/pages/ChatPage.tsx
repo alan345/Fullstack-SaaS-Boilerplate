@@ -2,7 +2,7 @@ import Chat from "../components/message/Chat"
 import { useEffect, useRef, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { useTRPC } from "../lib/trpc"
-import { RouterOutput } from "../lib/trpc"
+import type { RouterOutput } from "../lib/trpc"
 export type ChatMessage = RouterOutput["message"]["getMessages"][number]
 
 const ChatPage = () => {
